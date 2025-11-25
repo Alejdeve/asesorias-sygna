@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sygna para Asesores | Rentabilidad y Eficiencia</title>
+    <meta name="description" content="Plataforma de gestión para asesorías. Centralice clientes, automatice facturación y genere comisiones.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cta: '#7a60f5', // Color específico solicitado para botones
+                            dark: '#5a45c7', // Variación oscura para hover
+                        },
+                        pastel: {
+                            start: '#b4d1ee',
+                            end: '#caf6ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Fondo degradado solicitado */
+        body {
+            background: linear-gradient(135deg, #b4d1ee 0%, #caf6ff 100%);
+            min-height: 100vh;
+        }
+        
+        /* Panel de vidrio adaptado para modo claro */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animación suave */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="text-slate-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-panel shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- Logo Imagen -->
+                    <img src="sygna.png" alt="Sygna" class="h-10 w-auto">
+                    <span class="text-xs text-brand-cta font-bold mt-1 ml-1 bg-brand-cta/10 px-2 py-0.5 rounded-full border border-brand-cta/20">PARTNERS</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#beneficios" class="text-slate-600 hover:text-brand-cta transition-colors px-3 py-2 rounded-md text-sm font-medium">Beneficios</a>
+                        <a href="#funcionalidades" class="text-slate-600 hover:text-brand-cta transition-colors px-3 py-2 rounded-md text-sm font-medium">Cómo Funciona</a>
+                        <a href="#seguridad" class="text-slate-600 hover:text-brand-cta transition-colors px-3 py-2 rounded-md text-sm font-medium">Tecnología</a>
+                        <!-- CTA Botón Pequeño -->
+                        <a href="https://wa.me/34600000000?text=Hola,%20me%20interesa%20ver%20la%20demo%20de%20Sygna%20para%20asesores." target="_blank" class="bg-brand-cta text-white hover:bg-brand-dark px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            Agendar Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-brand-cta hover:bg-gray-100 focus:outline-none shadow-sm" aria-controls="mobile-menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <span class="sr-only">Abrir menú</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden bg-white border-b border-slate-100 shadow-xl" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#beneficios" class="text-slate-600 hover:text-brand-cta block px-3 py-2 rounded-md text-base font-medium">Beneficios</a>
+                <a href="#funcionalidades" class="text-slate-600 hover:text-brand-cta block px-3 py-2 rounded-md text-base font-medium">Cómo Funciona</a>
+                <a href="https://wa.me/34600000000?text=Hola,%20quiero%20información%20sobre%20Sygna%20Partners" class="text-brand-cta font-bold block px-3 py-2 rounded-md text-base">Agendar Demo en WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="relative pt-32 pb-16 lg:pt-48 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                
+                <!-- Hero Content (Left) -->
+                <div class="sm:text-center lg:text-left lg:col-span-6 fade-in-up">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full border border-brand-cta/30 bg-white/60 backdrop-blur-sm text-brand-cta text-sm font-bold mb-6 shadow-sm">
+                        <span class="flex h-2 w-2 rounded-full bg-brand-cta mr-2 animate-pulse"></span>
+                        Oportunidad para Partners 2026
+                    </div>
+                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl mb-6 drop-shadow-sm">
+                        Su Asesoría, más <span class="text-brand-cta">Rentable y Eficiente</span>
+                    </h1>
+                    <p class="mt-4 text-lg text-slate-700 leading-relaxed mb-8 font-medium">
+                        Centralice la gestión, olvídese de perseguir facturas en los trimestres y asegure el cumplimiento legal de sus clientes.
+                        <br class="hidden lg:block"><span class="text-slate-900 font-bold bg-white/50 px-1 rounded">Sygna es GRATIS para usted + Comisiones por cliente.</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/34600000000?text=Hola,%20quiero%20agendar%20una%20demo%20de%20Sygna." target="_blank" class="flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-lg text-white bg-brand-cta hover:bg-brand-dark md:text-lg shadow-xl shadow-brand-cta/30 transition-all transform hover:-translate-y-1">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            Agendar Demo
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-slate-600 text-center lg:text-left font-medium">
+                        * Sin permanencia. No requiere instalación. Genera tu usuario y contraseña en 1 minuto.
+                    </p>
+                </div>
+
+                <!-- Hero Image (Right) -->
+                <div class="mt-12 lg:mt-0 lg:col-span-6 relative fade-in-up delay-200">
+                    <!-- Abstract Dashboard Representation (Light Mode) -->
+                    <div class="relative rounded-xl bg-white shadow-2xl border border-white/50 p-2 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <!-- Browser Header -->
+                        <div class="bg-slate-100 rounded-t-lg p-3 flex items-center space-x-2 border-b border-slate-200">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                            <div class="ml-4 h-5 w-64 bg-white rounded text-xs text-slate-400 flex items-center px-2 border border-slate-100 shadow-sm">sygna-partners.com/panel</div>
+                        </div>
+                        <!-- UI Content Mockup -->
+                        <div class="bg-slate-50 p-6 rounded-b-lg min-h-[300px] flex flex-col gap-4">
+                            <!-- Top Stats -->
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                                    <div class="h-2 w-16 bg-brand-cta/50 rounded mb-2"></div>
+                                    <div class="h-6 w-10 bg-slate-200 rounded"></div>
+                                    <div class="mt-2 h-3 w-full bg-slate-100 rounded"></div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                                    <div class="h-2 w-16 bg-emerald-400/50 rounded mb-2"></div>
+                                    <div class="h-6 w-10 bg-slate-200 rounded"></div>
+                                    <div class="mt-2 h-3 w-full bg-slate-100 rounded"></div>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                                    <div class="h-2 w-16 bg-blue-400/50 rounded mb-2"></div>
+                                    <div class="h-6 w-10 bg-slate-200 rounded"></div>
+                                    <div class="mt-2 h-3 w-full bg-slate-100 rounded"></div>
+                                </div>
+                            </div>
+                            <!-- Client List Mockup -->
+                            <div class="flex-1 bg-white rounded-lg border border-slate-100 p-4 shadow-sm">
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="h-4 w-32 bg-slate-200 rounded"></div>
+                                    <div class="h-8 w-24 bg-brand-cta rounded"></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="h-12 w-full bg-slate-50 rounded flex items-center px-3 border border-slate-100">
+                                        <div class="h-6 w-6 rounded-full bg-orange-300 mr-3"></div>
+                                        <div class="h-2 w-24 bg-slate-300 rounded"></div>
+                                        <div class="ml-auto h-2 w-12 bg-emerald-400 rounded"></div>
+                                    </div>
+                                    <div class="h-12 w-full bg-slate-50 rounded flex items-center px-3 border border-slate-100">
+                                        <div class="h-6 w-6 rounded-full bg-pink-300 mr-3"></div>
+                                        <div class="h-2 w-32 bg-slate-300 rounded"></div>
+                                        <div class="ml-auto h-2 w-12 bg-emerald-400 rounded"></div>
+                                    </div>
+                                    <div class="h-12 w-full bg-slate-50 rounded flex items-center px-3 border border-slate-100">
+                                        <div class="h-6 w-6 rounded-full bg-indigo-300 mr-3"></div>
+                                        <div class="h-2 w-20 bg-slate-300 rounded"></div>
+                                        <div class="ml-auto h-2 w-12 bg-red-400 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-4 bg-white p-4 rounded-lg border border-slate-100 shadow-xl flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                        <div class="bg-green-100 p-2 rounded-full text-green-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-medium">Comisiones generadas</p>
+                            <p class="text-lg font-bold text-slate-800">+ 20% <span class="text-sm font-normal text-slate-500">recurrente</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 PILLARS / BENEFITS SECTION -->
+    <div id="beneficios" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-base text-brand-cta font-bold tracking-wide uppercase bg-white/50 inline-block px-3 py-1 rounded-full">Propuesta de Valor</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                    Por qué las Asesorías Top eligen Sygna
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-slate-700 mx-auto font-medium">
+                    Hemos diseñado un modelo donde usted gana dinero, ahorra tiempo y no asume riesgos técnicos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Col 1: Ganancia -->
+                <div class="glass-card rounded-2xl p-8 hover:border-brand-cta/50 transition-all duration-300 hover:transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-brand-cta/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-cta group-hover:text-white transition-colors text-brand-cta">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Nueva Fuente de Ingresos</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Obtenga entre un <strong>10% y un 20% de comisión</strong> recurrente por cada cliente. La plataforma es 100% gratuita para su despacho.
+                    </p>
+                </div>
+
+                <!-- Col 2: Tiempo -->
+                <div class="glass-card rounded-2xl p-8 hover:border-brand-cta/50 transition-all duration-300 hover:transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-brand-cta/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-cta group-hover:text-white transition-colors text-brand-cta">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Adiós al Papeleo Manual</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Acceda a la facturación de todos sus clientes <strong>en tiempo real</strong> desde un único panel. No espere al último día del trimestre.
+                    </p>
+                </div>
+
+                <!-- Col 3: Onboarding -->
+                <div class="glass-card rounded-2xl p-8 hover:border-brand-cta/50 transition-all duration-300 hover:transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-brand-cta/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-cta group-hover:text-white transition-colors text-brand-cta">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Onboarding "Manos Libres"</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        No haga de soporte técnico. <strong>Nosotros formamos a sus clientes</strong> en el uso de la herramienta. Usted solo asesora.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURE SECTION 1: COMPLIANCE -->
+    <div id="funcionalidades" class="py-24 bg-white/40 backdrop-blur-sm overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+                <!-- Image/Graphic -->
+                <div class="relative mb-12 lg:mb-0">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-brand-cta to-blue-300 rounded-full opacity-30 blur-2xl"></div>
+                    <div class="relative bg-white border border-slate-100 rounded-2xl p-6 shadow-xl">
+                        <!-- Mockup: Factura Electrónica Status -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                <span class="text-slate-900 font-bold">Estado de Cumplimiento</span>
+                                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">100% OK</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center p-3 bg-slate-50 rounded border border-slate-100">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-800">Factura-E (VeriFactu)</p>
+                                        <p class="text-xs text-slate-500">Activado y Conectado</p>
+                                    </div>
+                                    <div class="ml-auto text-green-500">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-slate-50 rounded border border-slate-100">
+                                    <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mr-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-800">Control Horario</p>
+                                        <p class="text-xs text-slate-500">Registro Geoloalizado</p>
+                                    </div>
+                                    <div class="ml-auto text-green-500">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-brand-cta/5 border border-brand-cta/20 rounded text-center">
+                                <p class="text-sm text-brand-cta font-semibold">Todas las facturas exportables a A3 / Sage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div>
+                    <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mb-6">
+                        Cumplimiento Legal sin Estrés para el Cliente y para Usted
+                    </h2>
+                    <p class="text-lg text-slate-700 mb-6 font-medium">
+                        La normativa cambia constantemente. Sygna es el escudo que garantiza que sus clientes cumplen con la ley sin añadirle carga de trabajo a usted.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-cta flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <p class="ml-4 text-base text-slate-700"><strong>Facturación Electrónica:</strong> Sus clientes emiten facturas legales en segundos.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-cta flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <p class="ml-4 text-base text-slate-700"><strong>Automatización Documental:</strong> Reciba tickets y facturas digitalizadas, sin cajas de zapatos.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-cta flex items-center justify-center mt-1">
+                                <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <p class="ml-4 text-base text-slate-700"><strong>Compatible con su Software:</strong> Exporte datos fácilmente a su ERP contable habitual.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURE SECTION 2: TECH & TRUST -->
+    <div id="seguridad" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+                <!-- Text Content (Left on Desktop) -->
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl mb-6">
+                        Un Socio Tecnológico Robusto para su Despacho
+                    </h2>
+                    <p class="text-lg text-slate-700 mb-6 font-medium">
+                        No somos solo un software, somos su partner tecnológico. Utilizamos la infraestructura más moderna (React, Node.js, Cloud) para garantizar seguridad y rapidez.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-slate-900 mb-1">Seguridad Bancaria</h4>
+                            <p class="text-sm text-slate-500">Datos encriptados y backups diarios automáticos.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-slate-900 mb-1">Accesible 24/7</h4>
+                            <p class="text-sm text-slate-500">Sus clientes acceden desde móvil o web en cualquier momento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image/Mobile Mockup (Right on Desktop) -->
+                <div class="order-1 lg:order-2 mb-12 lg:mb-0 relative">
+                    <!-- Mobile Phone Shape -->
+                    <div class="mx-auto border-white bg-white border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl">
+                        <div class="h-[32px] w-[3px] bg-slate-200 absolute -left-[17px] top-[72px] rounded-l-lg"></div>
+                        <div class="h-[46px] w-[3px] bg-slate-200 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                        <div class="h-[46px] w-[3px] bg-slate-200 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                        <div class="h-[64px] w-[3px] bg-slate-200 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                        <div class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white relative">
+                            <!-- Screen Content -->
+                            <div class="bg-slate-50 w-full h-full text-slate-800 overflow-hidden">
+                                <!-- Mobile Header -->
+                                <div class="bg-brand-cta p-4 pt-8 text-center rounded-b-xl mb-4 text-white">
+                                    <p class="text-xs text-blue-100">Hola, Cliente</p>
+                                    <p class="font-bold text-lg">Resumen Trimestre</p>
+                                </div>
+                                <!-- Mobile Stats -->
+                                <div class="px-4 space-y-3">
+                                    <div class="bg-white p-3 rounded-lg border border-slate-100 shadow-sm flex justify-between items-center">
+                                        <div>
+                                            <p class="text-xs text-slate-500">Ingresos</p>
+                                            <p class="font-bold text-emerald-500">12.500 €</p>
+                                        </div>
+                                        <div class="bg-emerald-100 p-2 rounded text-emerald-600">↑</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-slate-100 shadow-sm flex justify-between items-center">
+                                        <div>
+                                            <p class="text-xs text-slate-500">Gastos</p>
+                                            <p class="font-bold text-red-500">4.200 €</p>
+                                        </div>
+                                        <div class="bg-red-100 p-2 rounded text-red-600">↓</div>
+                                    </div>
+                                    
+                                    <!-- Action Button Mock -->
+                                    <div class="mt-6">
+                                        <div class="w-full bg-brand-cta h-10 rounded-lg flex items-center justify-center text-sm font-bold text-white shadow-md">
+                                            Escanear Ticket
+                                        </div>
+                                    </div>
+                                     <div class="mt-2">
+                                        <div class="w-full bg-white h-10 rounded-lg flex items-center justify-center text-sm font-bold border border-slate-200 text-slate-600">
+                                            Contactar Asesor
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL CTA SECTION -->
+    <div class="relative bg-white/60 backdrop-blur-md border-t border-white/50">
+        <div class="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+                <span class="block text-brand-cta mb-2 text-lg uppercase tracking-wide">Colaboración Exclusiva</span>
+                <span class="block">Conviértase en Partner en 2 Minutos</span>
+            </h2>
+            <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto font-medium">
+                Sin coste inicial. Sin permanencia. Empiece hoy mismo a ofrecer valor a sus clientes y genere su primera comisión.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/34600000000?text=Hola,%20soy%20asesor%20y%20quiero%20hablar%20con%20Ale%20para%20una%20demo." target="_blank" class="flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-lg text-white bg-brand-cta hover:bg-brand-dark md:text-lg shadow-xl shadow-brand-cta/30 transform transition hover:-translate-y-1">
+                    <svg class="w-6 h-6 mr-2 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Hablar con Alejandro Garcia
+                </a>
+            </div>
+            <p class="mt-4 text-sm text-slate-500">
+                Sygna es un producto de Siweb. Garantía de Calidad.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <!-- Logo Imagen en Blanco para fondo oscuro -->
+                <img src="sygna.png" alt="Sygna" class="h-8 w-auto brightness-0 invert opacity-90">
+            </div>
+            <div class="text-slate-400 text-sm">
+                &copy; 2025 Sygna. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
